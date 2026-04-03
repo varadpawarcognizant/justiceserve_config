@@ -1,3 +1,32 @@
+# eureka:
+#   instance:
+#     prefer-ip-address: true
+#   client:
+#     service-url:
+#       defaultZone: http://localhost:8761/eureka/
+
+# spring:
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#     show-sql: true
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.MySQL8Dialect
+
+# management:
+#   health:
+#     circuitbreakers:
+#       enabled: true # Enables the Circuit Breaker health group
+#   endpoint:
+#     health:
+#       show-details: always # Shows the details (state, failure rate) instead of just "UP"
+#   endpoints:
+#     web:
+#       exposure:
+#         include: health, metrics, circuitbreakers
+
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -6,6 +35,14 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 spring:
+  # --- ADDED DATASOURCE SECTION START ---
+  datasource:
+    url: jdbc:mysql://localhost:3306/justiceserve_db
+    username: root
+    password: your_mysql_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # --- ADDED DATASOURCE SECTION END ---
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,10 +54,10 @@ spring:
 management:
   health:
     circuitbreakers:
-      enabled: true # Enables the Circuit Breaker health group
+      enabled: true
   endpoint:
     health:
-      show-details: always # Shows the details (state, failure rate) instead of just "UP"
+      show-details: always
   endpoints:
     web:
       exposure:
