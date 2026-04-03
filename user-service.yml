@@ -1,0 +1,12 @@
+resilience4j:
+  circuitbreaker:
+    instances:
+      caseServiceBreaker: # Unique name for this instance
+        registerHealthIndicator: true
+        slidingWindowSize: 10 # Number of calls to record before calculating error rate
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: COUNT_BASED
+        minimumNumberOfCalls: 5 # Min calls before CB can trip
+        waitDurationInOpenState: 5s # How long to stay 'Open' before trying again
+        failureRateThreshold: 50 # Trip if 50% of calls fail
+        automatic-transition-from-open-to-half-open-enabled: true
